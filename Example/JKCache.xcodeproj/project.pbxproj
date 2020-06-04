@@ -208,6 +208,7 @@
 				6003F586195388D20070C39A /* Sources */,
 				6003F587195388D20070C39A /* Frameworks */,
 				6003F588195388D20070C39A /* Resources */,
+				436579DC61908008F20C5F66 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -317,6 +318,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-JKCache_Tests/Pods-JKCache_Tests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		436579DC61908008F20C5F66 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-JKCache_Example/Pods-JKCache_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/JKCache/JKCache.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JKCache.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-JKCache_Example/Pods-JKCache_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		5BC43FB9C99D7D6B2D3EF73D /* [CP] Check Pods Manifest.lock */ = {

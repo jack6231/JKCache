@@ -1,0 +1,22 @@
+{
+  "name": "JKCache",
+  "version": "0.1.0",
+  "summary": "A short description of JKCache.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/jack6231/JKCache",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "jack6231": "wangzhiheng@dankegongyu.com"
+  },
+  "source": {
+    "git": "https://github.com/jack6231/JKCache.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "JKCache/Classes/**/*"
+}
