@@ -124,7 +124,7 @@
     if (countLimit == 0) {
         [_map removeAll];
         finish = YES;
-    } else if (countLimit <= _map.totalCount) {
+    } else if (countLimit > _map.totalCount) {
         finish = YES;
     }
     pthread_mutex_unlock(&_lock);
@@ -133,7 +133,7 @@
     NSMutableArray *holder = [[NSMutableArray alloc] init];
     while (!finish) {
         if (pthread_mutex_trylock(&_lock) == 0) {
-            if (countLimit <= _map.totalCount) {
+            if (countLimit < _map.totalCount) {
                 JKLinkedMapNode *node = [_map removeTail];
                 [holder addObject:node];
             } else {
@@ -161,7 +161,7 @@
     if (costLimit == 0) {
         [_map removeAll];
         finish = YES;
-    } else if (costLimit <= _map.totalCost) {
+    } else if (costLimit > _map.totalCost) {
         finish = YES;
     }
     pthread_mutex_unlock(&_lock);
@@ -214,6 +214,16 @@
             [holder removeAllObjects];
         });
     }
+}
+
+- (NSUInteger)totalCount
+{
+    return _map.totalCount;
+}
+
+- (NSUInteger)totalCost
+{
+    return _map.totalCost;
 }
 
 - (void)memoryWarning:(id)sender
