@@ -135,7 +135,9 @@
         if (pthread_mutex_trylock(&_lock) == 0) {
             if (countLimit < _map.totalCount) {
                 JKLinkedMapNode *node = [_map removeTail];
-                [holder addObject:node];
+                if (node) {
+                    [holder addObject:node];
+                }
             } else {
                 finish = YES;
             }
