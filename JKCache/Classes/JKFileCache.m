@@ -151,10 +151,6 @@ static NSString *md5(NSString *string)
             if (cacheResult) {
                 cacheResult(isSuccess);
             }
-            // 如果文件删除成功，则删除目录中数据
-            if (isSuccess) {
-                [[JKCacheManager shareInstance] removeItemWithFileName:self.name];
-            }
         }];
         return;
     }
@@ -186,12 +182,30 @@ static NSString *md5(NSString *string)
     });
 }
 
+- (id)object
+{
+    BOOL fileExistence = [[NSFileManager defaultManager] fileExistsAtPath:self->_path];
+    if (!fileExistence) {
+        return nil;
+    }
+    NSData *data = [NSData dataWithContentsOfFile:self->_path];
+    id object;
+    if (data) {
+        object = self->_deserialize(data, self->_name);
+    }
+    return object;
+}
+
 - (void)delete:(JKCacheDeleteBlock)reuslt
 {
     dispatch_async(_queue, ^{
         NSError *error;
         [[NSFileManager defaultManager] removeItemAtPath:self->_path error:&error];
         BOOL fileExistence = [[NSFileManager defaultManager] fileExistsAtPath:self->_path];
+        // 如果文件删除成功，则删除目录中数据
+        if (!fileExistence) {
+            [[JKCacheManager shareInstance] removeItemWithFileName:self.name];
+        }
         reuslt(!fileExistence, error);
     });
 }

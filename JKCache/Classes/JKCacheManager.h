@@ -34,7 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param size 文件大小
  @param timeLimit 文件缓存时间（单位：分钟）
  */
-- (void)registFileInfo:(NSString *)name  fileSize:(NSUInteger)size withTimeLimit:(NSTimeInterval)timeLimit;
+- (void)registFileInfo:(NSString *)name fileSize:(NSUInteger)size withTimeLimit:(NSTimeInterval)timeLimit;
 
 /**
  从目录中删除该文件信息

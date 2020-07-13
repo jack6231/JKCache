@@ -108,11 +108,18 @@ typedef void (^JKCacheDeleteBlock)(BOOL isSuccess, NSError * _Nullable error);
 - (void)cacheObject:(id<NSCoding>_Nullable)object withTimeLimit:(NSTimeInterval)timeLimit cacheResult:(JKCacheObjectBlock _Nullable )cacheResult;
 
 /**
- 获取对象
+ 获取对象：异步
 
  @param result 获取对象的回调
  */
 - (void)object:(JKCacheGetObjectBlock _Nullable )result;
+
+/**
+ 获取对象：同步
+ 
+ 大文件建议使用异步读取对象回调
+ */
+- (id)object;
 
 /**
  删除文件

@@ -35,7 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param key 缓存对象的key
  @param result 缓存对象结果回调
  */
-- (void)cacheObject:(id<NSCoding>)object forKey:(NSString *)key whenResult:(JKCacheObjectBlock)result;
+- (void)cacheObject:(id<NSCoding>)object forKey:(NSString *)key whenResult:(nullable JKCacheObjectBlock)result;
 
 /**
  缓存对象
@@ -45,7 +45,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param timeLimit 对象的缓存时间，单位是分钟
  @param result 缓存对象结果回调
  */
-- (void)cacheObject:(id<NSCoding>)object forKey:(NSString *)key andTiemLimit:(NSTimeInterval)timeLimit whenResult:(JKCacheObjectBlock)result;
+- (void)cacheObject:(id<NSCoding>)object forKey:(NSString *)key andTiemLimit:(NSTimeInterval)timeLimit whenResult:(nullable JKCacheObjectBlock)result;
 
 /**
  缓存对象
@@ -56,7 +56,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param deserialize 反序列化方法回调
  @param result 缓存结果回调
  */
-- (void)cacheObject:(id<NSCoding>)object forKey:(NSString *)key withSerialize:(JKCacheSerializeBlock)serialize andDeserialize:(JKCacheDeserializeBlock)deserialize whenResult:(JKCacheObjectBlock)result;
+- (void)cacheObject:(id<NSCoding>)object forKey:(NSString *)key withSerialize:(JKCacheSerializeBlock)serialize andDeserialize:(JKCacheDeserializeBlock)deserialize whenResult:(nullable JKCacheObjectBlock)result;
 
 /**
  缓存对象（对象必须实现NSCoding协议）
@@ -68,15 +68,23 @@ NS_ASSUME_NONNULL_BEGIN
  @param deserialize 反序列化方法回调
  @param result 缓存结果回调
  */
-- (void)cacheObject:(id<NSCoding>)object forKey:(NSString *)key withTiemLimit:(NSTimeInterval)timeLimit andSerialize:(JKCacheSerializeBlock)serialize andDeserialize:(JKCacheDeserializeBlock)deserialize whenResult:(JKCacheObjectBlock)result;
+- (void)cacheObject:(id<NSCoding>)object forKey:(NSString *)key withTiemLimit:(NSTimeInterval)timeLimit andSerialize:(JKCacheSerializeBlock)serialize andDeserialize:(JKCacheDeserializeBlock)deserialize whenResult:(nullable JKCacheObjectBlock)result;
 
 /**
- 根据key获取对象
+ 根据key获取异步对象
 
  @param key 对象的key
  @param result 获取到的对象回调
  */
 - (void)objectForKey:(NSString *)key whenResult:(JKCacheGetObjectBlock)result;
+
+/**
+ 根据key获取对象
+ 若文件过大会阻塞线程，建议使用异步获取
+ 
+ @param key 对象的key
+ */
+- (id)objectForKey:(NSString *)key;
 
 /**
  根据key删除对象

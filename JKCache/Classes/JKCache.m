@@ -62,15 +62,23 @@ static JKCache *cacheInstance;
     if (object) {
         result(object, key);
         return;
-    } else {
-        [[JKFileCache cacheWithName:key] object:^(id object, NSString *key) {
-            if (object) {
-             [self->_lurCache cacheObject:object forKey:key];
-            }
-            result(object, key);
-        }];
     }
+    [[JKFileCache cacheWithName:key] object:^(id object, NSString *key) {
+        if (object) {
+         [self->_lurCache cacheObject:object forKey:key];
+        }
+        result(object, key);
+    }];
+}
 
+- (id)objectForKey:(NSString *)key
+{
+    id object = [_lurCache objectForKey:key];
+    if (object) {
+        return object;
+    }
+    
+    return [[JKFileCache cacheWithName:key] object];
 }
 
 - (void)deleteObjectForKey:(NSString *)key whenResul:(JKCacheDeleteBlock)result
