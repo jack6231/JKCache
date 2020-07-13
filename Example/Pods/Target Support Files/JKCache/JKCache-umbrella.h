@@ -12,6 +12,7 @@
 
 #import "JKCache.h"
 #import "JKCacheManager.h"
+#import "JKCacheObject.h"
 #import "JKFileCache.h"
 #import "JKLRUCache.h"
 #import "JKLinkedMap.h"

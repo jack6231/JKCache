@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0465E8FA24BCA42800124592 /* JKTestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0465E8F924BCA42800124592 /* JKTestModel.m */; };
 		5B2365D93798B08C28358846 /* Pods_JKCache_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24238AB6DEB258084445E589 /* Pods_JKCache_Example.framework */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
@@ -37,10 +38,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0465E8F824BCA42800124592 /* JKTestModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JKTestModel.h; sourceTree = "<group>"; };
+		0465E8F924BCA42800124592 /* JKTestModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JKTestModel.m; sourceTree = "<group>"; };
 		24238AB6DEB258084445E589 /* Pods_JKCache_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JKCache_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		281A3E8FE116BE051517B31C /* Pods-JKCache_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JKCache_Tests.debug.xcconfig"; path = "Target Support Files/Pods-JKCache_Tests/Pods-JKCache_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		3BACCAB5396991657DEAA7CC /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
-		5856B174D80D9130EF73B4EB /* JKCache.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = JKCache.podspec; path = ../JKCache.podspec; sourceTree = "<group>"; };
+		3BACCAB5396991657DEAA7CC /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		5856B174D80D9130EF73B4EB /* JKCache.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = JKCache.podspec; path = ../JKCache.podspec; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* JKCache_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JKCache_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6003F58F195388D20070C39A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -64,7 +67,7 @@
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8D8C4A91D7AA43B6BCCDE4D4 /* Pods_JKCache_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JKCache_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		97C6E1F34A287DEDFFC24DF1 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		97C6E1F34A287DEDFFC24DF1 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		E0FEDDBB079ED1AC0964F984 /* Pods-JKCache_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JKCache_Tests.release.xcconfig"; path = "Target Support Files/Pods-JKCache_Tests/Pods-JKCache_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		F0C7F061FFC13DB7ECA625DB /* Pods-JKCache_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JKCache_Example.release.xcconfig"; path = "Target Support Files/Pods-JKCache_Example/Pods-JKCache_Example.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -95,6 +98,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0465E8F724BCA41600124592 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0465E8F824BCA42800124592 /* JKTestModel.h */,
+				0465E8F924BCA42800124592 /* JKTestModel.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		6003F581195388D10070C39A = {
 			isa = PBXGroup;
 			children = (
@@ -132,6 +144,7 @@
 		6003F593195388D20070C39A /* Example for JKCache */ = {
 			isa = PBXGroup;
 			children = (
+				0465E8F724BCA41600124592 /* Model */,
 				6003F59C195388D20070C39A /* JKAppDelegate.h */,
 				6003F59D195388D20070C39A /* JKAppDelegate.m */,
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
@@ -193,7 +206,6 @@
 				281A3E8FE116BE051517B31C /* Pods-JKCache_Tests.debug.xcconfig */,
 				E0FEDDBB079ED1AC0964F984 /* Pods-JKCache_Tests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -259,6 +271,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -391,6 +404,7 @@
 			files = (
 				6003F59E195388D20070C39A /* JKAppDelegate.m in Sources */,
 				6003F5A7195388D20070C39A /* JKViewController.m in Sources */,
+				0465E8FA24BCA42800124592 /* JKTestModel.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

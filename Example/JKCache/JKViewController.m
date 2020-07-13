@@ -8,6 +8,7 @@
 
 #import "JKViewController.h"
 #import "JKCache/JKCache.h"
+#import "JKTestModel.h"
 
 @interface JKViewController ()
 
@@ -18,18 +19,24 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    // Do any additional setup after loading the view, typically from a nib.
 }
 
 - (IBAction)clickAddButton:(id)sender
 {
-    for (int i = 0; i < 1; i++) {
+    for (int i = 0; i < 10; i++) {
         dispatch_queue_t concurrentQueue=dispatch_queue_create("并行队列", DISPATCH_QUEUE_CONCURRENT);
         dispatch_async(concurrentQueue, ^{
-            [[JKCache shareInstance] cacheObject:@"测试哈哈哈1" forKey:@"test1" whenResult:^(BOOL isSuccess) {
-                NSLog(@"---------------1：%d", isSuccess);
+            JKTestModel *testModel = [[JKTestModel alloc] init];
+            testModel.name = @"Jack";
+            testModel.age = 18;
+            testModel.height = 175;
+            testModel.gender = Boy;
+            [[JKCache shareInstance] cacheObject:testModel forKey:@"test1" whenResult:^(BOOL isSuccess) {
+                NSLog(@"--------------");
             }];
         });
+
         dispatch_async(concurrentQueue, ^{
             [[JKCache shareInstance] cacheObject:@"测试嘿嘿嘿2" forKey:@"test2" whenResult:^(BOOL isSuccess) {
                 NSLog(@"---------------2：%d", isSuccess);
@@ -40,7 +47,7 @@
                 NSLog(@"---------------3：%d", isSuccess);
             }];
         });
-        usleep(10*1000);
+//        usleep(10*1000);
     }
 }
 
@@ -56,21 +63,20 @@
     dispatch_queue_t concurrentQueue=dispatch_queue_create("并行队列", DISPATCH_QUEUE_CONCURRENT);
     for (int i = 0; i < 1; i++) {
         dispatch_async(concurrentQueue, ^{
-                    [[JKCache shareInstance] objectForKey:@"test1" whenResult:^(id object, NSString *key) {
-                        NSLog(@"---key:%@, value:%@", key, object);
-                    }];
+            [[JKCache shareInstance] objectForKey:@"test1" whenResult:^(id object, NSString *key) {
+                NSLog(@"---key:%@, value:%@", key, object);
+            }];
         });
         
-        dispatch_async(concurrentQueue, ^{
-                    [[JKCache shareInstance] objectForKey:@"test2" whenResult:^(id object, NSString *key) {
-                        NSLog(@"---key:%@, value:%@", key, object);
-                    }];
-        });
-        dispatch_async(concurrentQueue, ^{
-                    [[JKCache shareInstance] objectForKey:@"test3" whenResult:^(id object, NSString *key) {
-                        NSLog(@"---key:%@, value:%@", key, object);
-                    }];
-        });
+//        dispatch_async(concurrentQueue, ^{
+//            [[JKCache shareInstance] objectForKey:@"test2" whenResult:^(id object, NSString *key) {
+//                NSLog(@"---key:%@, value:%@", key, object);
+//            }];
+//        });
+//        dispatch_async(concurrentQueue, ^{
+//            id object = [[JKCache shareInstance] objectForKey:@"test3"];
+//            NSLog(@"---key: test3, value:%@",object);
+//        });
     }
 }
 
