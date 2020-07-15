@@ -118,11 +118,7 @@ static JKCacheManager *managerInstance;
     }
     JKCacheFileInfo *info = [[JKCacheFileInfo alloc] initWithName:name size:size timeLimit:timeLimit];
     [self->catalogDict setObject:info.values forKey:name];
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-        [[JKFileCache cacheWithName:CatalogFileName] cacheObject:self->catalogDict cacheResult:^(BOOL isSuccess) {
-            NSLog(@"regist fileCache %@", isSuccess ? @"SUCCESS" : @"FAIL");
-        }];
-    });
+    [[JKFileCache cacheWithName:CatalogFileName] cacheObject:[self->catalogDict copy] cacheResult:nil];
     pthread_mutex_unlock(&_lock);
 }
 

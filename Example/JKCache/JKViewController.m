@@ -24,31 +24,33 @@
 
 - (IBAction)clickAddButton:(id)sender
 {
-    for (int i = 0; i < 10; i++) {
-        dispatch_queue_t concurrentQueue=dispatch_queue_create("并行队列", DISPATCH_QUEUE_CONCURRENT);
-        dispatch_async(concurrentQueue, ^{
-            JKTestModel *testModel = [[JKTestModel alloc] init];
-            testModel.name = @"Jack";
-            testModel.age = 18;
-            testModel.height = 175;
-            testModel.gender = Boy;
-            [[JKCache shareInstance] cacheObject:testModel forKey:@"test1" whenResult:^(BOOL isSuccess) {
-                NSLog(@"--------------");
-            }];
-        });
+    NSThread *t = [[NSThread alloc] initWithBlock:^{
+        for (int i = 0; i < 1000; i++) {
+            dispatch_queue_t concurrentQueue=dispatch_queue_create("并行队列", DISPATCH_QUEUE_CONCURRENT);
+            dispatch_async(concurrentQueue, ^{
+                JKTestModel *testModel = [[JKTestModel alloc] init];
+                testModel.name = @"Jack";
+                testModel.age = 18;
+                testModel.height = 175;
+                testModel.gender = Boy;
+                [[JKCache shareInstance] cacheObject:testModel forKey:@"test1" whenResult:^(BOOL isSuccess) {
+                    NSLog(@"--------------");
+                }];
+            });
 
-        dispatch_async(concurrentQueue, ^{
-            [[JKCache shareInstance] cacheObject:@"测试嘿嘿嘿2" forKey:@"test2" whenResult:^(BOOL isSuccess) {
-                NSLog(@"---------------2：%d", isSuccess);
-            }];
-        });
-        dispatch_async(concurrentQueue, ^{
-            [[JKCache shareInstance] cacheObject:@"测试嘻嘻嘻3" forKey:@"test3" whenResult:^(BOOL isSuccess) {
-                NSLog(@"---------------3：%d", isSuccess);
-            }];
-        });
-//        usleep(10*1000);
-    }
+            dispatch_async(concurrentQueue, ^{
+                [[JKCache shareInstance] cacheObject:@"测试嘿嘿嘿2" forKey:@"test2" whenResult:^(BOOL isSuccess) {
+                    NSLog(@"---------------2：%d", isSuccess);
+                }];
+            });
+            dispatch_async(concurrentQueue, ^{
+                [[JKCache shareInstance] cacheObject:@"测试嘻嘻嘻3" forKey:@"test3" whenResult:^(BOOL isSuccess) {
+                    NSLog(@"---------------3：%d", isSuccess);
+                }];
+            });
+        }
+    }];
+    [t start];
 }
 
 - (IBAction)clickRomveButton:(id)sender

@@ -160,8 +160,10 @@ static NSString *md5(NSString *string)
         if (data) {
             [data writeToFile:self->_path atomically:YES];
         }
-        BOOL fileExistence = [[NSFileManager defaultManager] fileExistsAtPath:self->_path];
-        cacheResult(fileExistence);
+        if (cacheResult) {
+            BOOL fileExistence = [[NSFileManager defaultManager] fileExistsAtPath:self->_path];
+            cacheResult(fileExistence);
+        }
     });
 }
 
