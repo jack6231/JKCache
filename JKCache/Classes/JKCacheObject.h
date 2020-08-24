@@ -4,8 +4,13 @@
 //
 //  Created by 王治恒 on 2020/7/14.
 //
+// 1、JKCacheObject 作为缓存类的基类
+// 2、本类类名作为默认存取键值
+// 3、多个实例存取使用 cacheObjectWithKey:\cacheInstanceWithKey: 传入对应键值
+//
 
 #import <Foundation/Foundation.h>
+#import "JKCacheObject.h"
 
 #define JKCacheCodingImplementation \
 - (nullable instancetype)initWithCoder:(nonnull NSCoder *)coder { \
@@ -37,7 +42,20 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JKCacheObject : NSObject<NSCoding>
 
-- (void)cacheWithKay:(NSString *)key;
+/// 从磁盘读取缓存实例
++ (instancetype)instanceForCache;
+
+/// 根据 key 值从磁盘读取缓存实例
+/// @param key 实例对应的键值
++ (instancetype)instanceForCacheWithKey:(NSString *)key;
+
+/// 缓存实例
+- (void)cacheObject;
+
+/// 根据 key 值缓存实例
+/// @param key 实例对应的键值
+- (void)cacheObjectWithKey:(NSString *)key;
+
 
 @end
 

@@ -11,33 +11,33 @@
 
 @implementation JKCacheObject
 
-- (nullable instancetype)initWithCoder:(nonnull NSCoder *)coder {
-    self = [super init];
-    if (!self) {
-       return nil;
-    }
-    unsigned int propertyCount;
-    objc_property_t* properties_t = class_copyPropertyList([self class], &propertyCount);
-    for (int i = 0; i < propertyCount; i++) {
-        objc_property_t t_property = properties_t[i];
-        NSString *attributeName = [NSString stringWithUTF8String:property_getName(t_property)];
-        [self setValue:[coder decodeObjectForKey:attributeName] forKey:attributeName];
-    }
-    return self;
-}
+JKCacheCodingImplementation
 
-- (void)encodeWithCoder:(nonnull NSCoder *)coder {
-    unsigned int propertyCount;
-    objc_property_t* properties_t = class_copyPropertyList([self class], &propertyCount);
-    for (int i = 0; i < propertyCount; i++) {
-        objc_property_t t_property = properties_t[i];
-        NSString *attributeName = [NSString stringWithUTF8String:property_getName(t_property)];
-        [coder encodeObject:[self valueForKey:attributeName] forKey:attributeName];
-    }
-}
-
-- (void)cacheWithKay:(NSString *)key
++ (instancetype)instanceForCache
 {
+    NSString *key = NSStringFromClass([self class]);
+    return [self instanceForCacheWithKey:key];
+}
+
++ (instancetype)instanceForCacheWithKey:(NSString *)key
+{
+    if (!key) return nil;
+    id instance = [[JKCache shareInstance] objectForKey:key];
+    if (![instance isKindOfClass:[self class]]) {
+        return nil;
+    }
+    return instance;
+}
+
+- (void)cacheObject
+{
+    NSString *key = NSStringFromClass([self class]);
+    [self cacheObjectWithKey:key];
+}
+
+- (void)cacheObjectWithKey:(NSString *)key
+{
+    if (!key) return;
     [[JKCache shareInstance] cacheObject:self forKey:key andTiemLimit:NSIntegerMax whenResult:nil];
 }
 
