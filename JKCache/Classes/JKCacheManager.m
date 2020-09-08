@@ -116,7 +116,8 @@ static JKCacheManager *managerInstance;
         pthread_mutex_unlock(&_lock);
         return;
     }
-    JKCacheFileInfo *info = [[JKCacheFileInfo alloc] initWithName:name size:size timeLimit:timeLimit];
+    // 传入的时间戳为分钟，需要转成秒单位
+    JKCacheFileInfo *info = [[JKCacheFileInfo alloc] initWithName:name size:size timeLimit:timeLimit * 60];
     [self->catalogDict setObject:info.values forKey:name];
     [[JKFileCache cacheWithName:CatalogFileName] cacheObject:[self->catalogDict copy] cacheResult:nil];
     pthread_mutex_unlock(&_lock);
