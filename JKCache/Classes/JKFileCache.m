@@ -14,9 +14,10 @@
 @interface JKFileCache()
 {
     dispatch_queue_t _queue;
-    JKCacheSerializeBlock _serialize;     // 序列化回调block
-    JKCacheDeserializeBlock _deserialize; // 反序列化回调block
 }
+@property (nonatomic, copy) JKCacheSerializeBlock serialize;     // 序列化回调block
+@property (nonatomic, copy) JKCacheDeserializeBlock deserialize; // 反序列化回调block
+
 @end
 
 @implementation JKFileCache
@@ -96,15 +97,15 @@ static NSString *md5(NSString *string)
         _queue = dispatch_queue_create("com.JK.cache.disk", DISPATCH_QUEUE_SERIAL);
         
         if (serialize) {
-            _serialize = serialize;
+            self.serialize = serialize;
         } else {
-            _serialize = [self defultSerializeBlock];
+            self.serialize = [self defultSerializeBlock];
         }
         
         if (deserialize) {
-            _deserialize = deserialize;
+            self.deserialize = deserialize;
         } else {
-            _deserialize = [self defultDeserializeBlock];
+            self.deserialize = [self defultDeserializeBlock];
         }
     }
     return self;
@@ -155,7 +156,7 @@ static NSString *md5(NSString *string)
         return;
     }
     dispatch_async(_queue, ^{
-        NSData *data = self->_serialize(object, self->_name);
+        NSData *data = self.serialize(object, self->_name);
         [[JKCacheManager shareInstance] registFileInfo:self.name fileSize:data.length withTimeLimit:timeLimit];
         if (data) {
             [data writeToFile:self->_path atomically:YES];
@@ -178,7 +179,7 @@ static NSString *md5(NSString *string)
         NSData *data = [NSData dataWithContentsOfFile:self->_path];
         id object;
         if (data) {
-            object = self->_deserialize(data, self->_name);
+            object = self.deserialize(data, self->_name);
         }
         result(object, self->_name);
     });
@@ -193,7 +194,7 @@ static NSString *md5(NSString *string)
     NSData *data = [NSData dataWithContentsOfFile:self->_path];
     id object;
     if (data) {
-        object = self->_deserialize(data, self->_name);
+        object = self.deserialize(data, self->_name);
     }
     return object;
 }
