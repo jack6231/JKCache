@@ -261,6 +261,9 @@
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "王治恒";
 				TargetAttributes = {
+					6003F589195388D20070C39A = {
+						DevelopmentTeam = 3J5V77ZTHP;
+					};
 					6003F5AD195388D20070C39A = {
 						TestTargetID = 6003F589195388D20070C39A;
 					};
@@ -533,6 +536,7 @@
 			baseConfigurationReference = 6BD0D5A20702632C7FC8C5CC /* Pods-JKCache_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 3J5V77ZTHP;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "JKCache/JKCache-Prefix.pch";
 				INFOPLIST_FILE = "JKCache/JKCache-Info.plist";
@@ -549,6 +553,7 @@
 			baseConfigurationReference = F0C7F061FFC13DB7ECA625DB /* Pods-JKCache_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 3J5V77ZTHP;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "JKCache/JKCache-Prefix.pch";
 				INFOPLIST_FILE = "JKCache/JKCache-Info.plist";

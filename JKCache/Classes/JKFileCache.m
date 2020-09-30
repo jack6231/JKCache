@@ -91,8 +91,6 @@ static NSString *md5(NSString *string)
     self = [super init];
     if (self) {
         _path = path;
-        NSLog(@"----path:%@", _path);
-
         // 创建一个并发队列，用于操作任务
         _queue = dispatch_queue_create("com.JK.cache.disk", DISPATCH_QUEUE_SERIAL);
         
@@ -209,6 +207,7 @@ static NSString *md5(NSString *string)
         if (!fileExistence) {
             [[JKCacheManager shareInstance] removeItemWithFileName:self.name];
         }
+        NSLog(@"-------删除结果：%ld, error：%@", fileExistence, error);
         reuslt(!fileExistence, error);
     });
 }
