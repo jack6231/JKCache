@@ -207,7 +207,6 @@ static NSString *md5(NSString *string)
         if (!fileExistence) {
             [[JKCacheManager shareInstance] removeItemWithFileName:self.name];
         }
-        NSLog(@"-------删除结果：%ld, error：%@", fileExistence, error);
         reuslt(!fileExistence, error);
     });
 }
