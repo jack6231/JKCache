@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'JKCache'
-  s.version          = '0.1.5'
+  s.version          = '0.1.6'
   s.summary          = '轻量级缓存库'
 
 # This description is used to generate tags and improve search results.
