@@ -1,6 +1,0 @@
-framework module JKCache {
-  umbrella header "JKCache-umbrella.h"
-
-  export *
-  module * { export * }
-}
